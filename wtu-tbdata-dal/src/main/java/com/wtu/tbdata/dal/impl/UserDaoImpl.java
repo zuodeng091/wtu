@@ -28,5 +28,14 @@ public class UserDaoImpl implements UserDao{
 		}
 		return null;
 	}
+	
+	public void insertUser(User user) throws SQLException{
+		sqlmapClient.insert("user.insertUser", user);
+		throw new RuntimeException();
+	}
+	
+	public void insert(User user) throws SQLException{
+		sqlmapClient.insert("user.insertUser", user);
+	}
 
 }

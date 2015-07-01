@@ -1,5 +1,6 @@
 package com.wtu.tbdata.core;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.wtu.tbdata.domain.User;
@@ -15,5 +16,7 @@ public interface UserService {
 	 * @return the user list
 	 */
 	public List<User> getUserList();
+	
+	public void insert() throws SQLException;
 
 }

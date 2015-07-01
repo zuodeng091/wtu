@@ -1,5 +1,6 @@
 package com.wtu.tbdata.dal;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.wtu.tbdata.domain.User;
@@ -15,5 +16,9 @@ public interface UserDao {
 	 * @return the user list
 	 */
 	public List<User> getUserList();
+	
+	public void insertUser(User user) throws SQLException;
+	
+	public void insert(User user) throws SQLException;
 
 }

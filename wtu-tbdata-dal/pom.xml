@@ -24,5 +24,10 @@
   	  <artifactId>wtu-tbdata-domain</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.wtu.tbdata.common</groupId>
+  	  <artifactId>wtu-tbdata-common</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 </project>
