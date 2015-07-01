@@ -14,7 +14,7 @@ import com.wtu.tbdata.core.UserService;
 import com.wtu.tbdata.domain.User;
 
 @Controller("userAction")
-@LogAnnotation(type=ClassType.CONTROLLER)
+@LogAnnotation
 public class UserAction extends ActionSupport{
 	/**
 	 * 序列化ID

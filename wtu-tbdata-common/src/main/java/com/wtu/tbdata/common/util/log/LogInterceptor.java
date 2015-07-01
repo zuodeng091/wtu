@@ -7,6 +7,8 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+@Aspect
+@Component
 public class LogInterceptor extends AbstractLogInterceptor{
 
 	@Pointcut("@within(com.wtu.tbdata.common.util.log.LogAnnotation) || @annotation(com.wtu.tbdata.common.util.log.LogAnnotation)")
@@ -14,7 +16,7 @@ public class LogInterceptor extends AbstractLogInterceptor{
 		
 	}
 	
-	@Before(value = "cutMehtod()")
+	@Before(value = "cutMethod()")
 	public void doBefore() throws NoSuchMethodException,ClassNotFoundException{
 		System.out.println("cutPoint");
 	}
