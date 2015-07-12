@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+						http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.1.xsd
+						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+						http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd"
+	default-autowire="byName">
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	<!-- 配置spring扫描 -->
+	<context:component-scan base-package="com.wtu.tbdata"/>
+	
+	<bean id="propertyConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+		  	<value>classpath:jdbc.properties</value>
+		</property>
+	</bean>
+	
+	<!-- 数据源的配置 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>${jdbc.driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${jdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+	</bean>
+	
+	<!-- Spting事务管理配置 Transaction Manager -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 定义拦截器,用来指定事务属性、级别和异常处理 -->
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+    	<property name="transactionManager" ref="transactionManager"></property>
+    	<property name="transactionAttributes">
+    		<props>
+    			<prop key="get*">PROPAGATION_SUPPORTS,readOnly</prop>
+    			<prop key="query*">PROPAGATION_SUPPORTS,readOnly</prop>
+    			<prop key="delete*">PROPAGATION_SUPPORTS</prop>
+    			<prop key="update*">PROPAGATION_REQUIRED</prop>
+    			<prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop>
+    			<prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>
+    		</props>
+    	</property>
+    </bean>
+    
+    <bean id="transactionBeanProxy" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+    	<property name="beanNames">
+    		<value>*Service</value>
+    	</property>
+    	
+    	<property name="interceptorNames">
+    		<list>
+    			<value>transactionInterceptor</value>
+    		</list>
+    	</property>
+    </bean>
+	
+	<!-- mybatis -->
+    <!-- define the SqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:mybatis/mybatis.xml"/>
+        <!-- 显示指定Mapper文件位置 -->
+        <property name="mapperLocations" value="classpath*:sqlmap/*Mapper.xml"/>
+    </bean>
+</beans>
