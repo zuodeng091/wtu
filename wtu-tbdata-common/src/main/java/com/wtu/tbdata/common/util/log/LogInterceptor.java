@@ -7,6 +7,8 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+import com.google.gson.Gson;
+
 @Aspect
 @Component
 public class LogInterceptor extends AbstractLogInterceptor{
@@ -24,7 +26,8 @@ public class LogInterceptor extends AbstractLogInterceptor{
 	@AfterReturning(pointcut="cutMethod()",returning="result")
 	public void doAfter(JoinPoint joinPoint,Object result) throws NoSuchMethodException,ClassNotFoundException{
 		
-		System.out.println(result.toString());
+		Gson gson = new Gson();
+		System.out.println(gson.toJson(result));
 		
 	}
 	

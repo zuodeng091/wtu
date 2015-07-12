@@ -15,8 +15,13 @@
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
-	  <groupId>com.wtu.tbdata.core</groupId>
-	  <artifactId>wtu-tbdata-core</artifactId>
+	  <groupId>com.wtu.tbdata.facade</groupId>
+	  <artifactId>wtu-tbdata-facade</artifactId>
+	  <version>${project.version}</version>
+	</dependency>
+	<dependency>
+	  <groupId>com.wtu.tbdata.common</groupId>
+	  <artifactId>wtu-tbdata-common</artifactId>
 	  <version>${project.version}</version>
 	</dependency>
   </dependencies>

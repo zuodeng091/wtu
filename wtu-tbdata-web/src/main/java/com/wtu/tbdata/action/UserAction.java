@@ -4,39 +4,40 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.context.annotation.Lazy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.wtu.tbdata.facade.service.UserService;
 
-import com.opensymphony.xwork2.ActionSupport;
-import com.wtu.tbdata.common.util.log.ClassType;
 import com.wtu.tbdata.common.util.log.LogAnnotation;
-import com.wtu.tbdata.core.UserService;
 import com.wtu.tbdata.domain.User;
+import com.wtu.tbdata.domain.WtuUser;
 
-@Controller("userAction")
+@Controller
 @LogAnnotation
-public class UserAction extends ActionSupport{
-	/**
-	 * 序列化ID
-	 */
-	private static final long serialVersionUID = 9171713825196099348L;
+@RequestMapping("user")
+public class UserAction {
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserAction.class);
 	
 	/** The user service. */
+	@SuppressWarnings("restriction")
 	@Resource(name="userService")
 	private UserService userService;
 
-	private List<User> list;
+	private List<WtuUser> list;
 	
-	private User user;
+	private WtuUser user;
 	
+	@RequestMapping("getUserList")
 	public String getUserList(){
 		try {
-			list = userService.getUserList();
+			list = userService.getUserByName(name);
 			userService.insert();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("getUserList has error",e);
 		}
-		
 		return "userList";
 	}
 
