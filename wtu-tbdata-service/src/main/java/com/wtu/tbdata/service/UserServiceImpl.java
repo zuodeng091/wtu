@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.wtu.tbdata.facade.service.UserService;
 
-import com.wtu.tbdata.common.util.log.LogAnnotation;
+import com.wtu.tbdata.common.log.LogAnnotation;
 import com.wtu.tbdata.dal.mapper.WtuUserMapper;
 import com.wtu.tbdata.domain.WtuUser;
 import com.wtu.tbdata.domain.WtuUserExample;

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.wtu.tbdata.facade.service.UserService;
 
-import com.wtu.tbdata.common.util.log.LogAnnotation;
+import com.wtu.tbdata.common.log.LogAnnotation;
 import com.wtu.tbdata.domain.User;
 import com.wtu.tbdata.domain.WtuUser;
 

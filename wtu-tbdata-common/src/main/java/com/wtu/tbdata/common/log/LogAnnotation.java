@@ -1,4 +1,4 @@
-package com.wtu.tbdata.common.util.log;
+package com.wtu.tbdata.common.log;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;

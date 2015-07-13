@@ -1,4 +1,4 @@
-package com.wtu.tbdata.common.util.log;
+package com.wtu.tbdata.common.log;
 
 public enum ClassType {
 	

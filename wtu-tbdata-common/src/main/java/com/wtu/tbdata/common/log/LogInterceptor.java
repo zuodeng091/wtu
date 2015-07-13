@@ -1,4 +1,4 @@
-package com.wtu.tbdata.common.util.log;
+package com.wtu.tbdata.common.log;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
