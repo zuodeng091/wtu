@@ -11,9 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.wtu.tbdata.facade.service.UserService;
 
 import com.wtu.tbdata.common.log.LogAnnotation;
-import com.wtu.tbdata.domain.User;
 import com.wtu.tbdata.domain.WtuUser;
 
+/**
+ *
+ * 用户管理action
+ * @author zuodeng 作者
+ */
 @Controller
 @LogAnnotation
 @RequestMapping("user")
@@ -29,31 +33,20 @@ public class UserAction {
 	private List<WtuUser> list;
 	
 	private WtuUser user;
-	
-	@RequestMapping("getUserList")
-	public String getUserList(){
-		try {
-			list = userService.getUserByName(name);
-			userService.insert();
-		} catch (Exception e) {
-			logger.error("getUserList has error",e);
-		}
-		return "userList";
-	}
 
-	public List<User> getList() {
+	public List<WtuUser> getList() {
 		return list;
 	}
 
-	public void setList(List<User> list) {
+	public void setList(List<WtuUser> list) {
 		this.list = list;
 	}
 
-	public User getUser() {
+	public WtuUser getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(WtuUser user) {
 		this.user = user;
 	}
 	
