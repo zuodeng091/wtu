@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.wtu.tbdata.dal.mapper.BaseMapper;
 import com.wtu.tbdata.dal.mapper.WtuUserMapper;
 import com.wtu.tbdata.domain.WtuUser;
 import com.wtu.tbdata.domain.WtuUserExample;
@@ -33,7 +32,7 @@ public class WtuUserMapperImpl extends BaseMapper implements WtuUserMapper{
 	}
 
 	public List<WtuUser> selectByExample(WtuUserExample example) {
-		return sqlSession.selectList("WtuUserMapper.selectByExample", example);
+		return this.getSqlSession().selectList("WtuUserMapper.selectByExample", example);
 	}
 
 	public WtuUser selectByPrimaryKey(Long id) {

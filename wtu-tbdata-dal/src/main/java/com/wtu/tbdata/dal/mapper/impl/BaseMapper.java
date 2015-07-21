@@ -1,15 +1,18 @@
-package com.wtu.tbdata.dal.mapper;
+package com.wtu.tbdata.dal.mapper.impl;
 
-import com.wtu.tbdata.common.spring.SpringContextHolder;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * 定义sqlsession
  * @author zuodeng 作者
  */
+@Component
 public class BaseMapper {
 
     /**
@@ -20,13 +23,15 @@ public class BaseMapper {
     /**
      * sqlSession
      */
-    protected static SqlSession sqlSession;
+    @Resource(name = "sqlSessionFactory")
+    private SqlSessionFactory sqlSessionFactory;
+
+    private SqlSession sqlSession;
 
     /**
      * 加载类的时候初始化sqlSession
      */
-    static {
-        SqlSessionFactory sqlSessionFactory = SpringContextHolder.getBean("sqlSessionFactory");
+    public BaseMapper(){
         if(sqlSessionFactory == null){
             logger.info("spring加载sqlSessionFactory失败");
         }else{
@@ -35,6 +40,14 @@ public class BaseMapper {
                 logger.info("spring成功加载sqlSession");
             }
         }
+    }
+
+    /**
+     * 获取sqlSession
+     * @return 返回
+     */
+    public SqlSession getSqlSession(){
+        return sqlSession;
     }
 
 }

@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 @Component
 public class LogInterceptor extends AbstractLogInterceptor{
 
-	@Pointcut("@within(com.wtu.tbdata.common.util.log.LogAnnotation) || @annotation(com.wtu.tbdata.common.util.log.LogAnnotation)")
+	@Pointcut("@within(com.wtu.tbdata.common.log.LogAnnotation) || @annotation(com.wtu.tbdata.common.log.LogAnnotation)")
 	private void cutMethod(){
 		
 	}

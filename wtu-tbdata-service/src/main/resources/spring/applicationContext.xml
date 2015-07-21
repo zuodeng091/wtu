@@ -78,4 +78,8 @@
         <!-- 显示指定Mapper文件位置 -->
         <property name="mapperLocations" value="classpath*:sqlmap/*Mapper.xml"/>
     </bean>
+
+	<!-- 使用 静态变量缓存applicationContext -->
+	<bean class="com.wtu.tbdata.common.spring.SpringContextHolder" lazy-init="false">
+	</bean>
 </beans>
